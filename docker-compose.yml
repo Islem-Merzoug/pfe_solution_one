@@ -1,0 +1,22 @@
+
+version: '3.7'
+services: 
+    docker-fastapi1:
+        container_name: docker-fastapi1
+        build: 
+            context: ./pfe-docker/pfe
+            dockerfile: Dockerfile
+        ports: 
+            - "8888:8888"
+            - "8000:8000"
+        restart: always
+    nginx:
+        depends_on: 
+            - docker-fastapi1
+        container_name: proxy-app1
+        build: 
+            context: ./pfe-react/pfe
+            dockerfile: Dockerfile
+        ports: 
+            - "80:80"
+        restart: always
