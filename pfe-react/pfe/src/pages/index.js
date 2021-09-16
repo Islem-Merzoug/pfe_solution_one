@@ -26,6 +26,16 @@ const Home = () => {
           outputImageExempleLink= { models[1][('outputImageExempleLink')] }
       />
 
+      <Card
+          id= { models[2][('id')] }
+          name= { models[2][('name')] }
+          image= { models[2][('image')] }
+          description= { models[2][('description')] }
+          detailLink= { models[2][('detailLink')] }
+          inputImageExempleLink= { models[2][('inputImageExempleLink')] }
+          outputImageExempleLink= { models[2][('outputImageExempleLink')] }
+      />
+
 
       <div>
         <h1 style={{ display: 'flex', justifyContent: 'center', margin: '30px' }} >Why choose us</h1>

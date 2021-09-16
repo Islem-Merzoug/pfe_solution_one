@@ -17,7 +17,7 @@ def detect_and_draw_box(filename, model="yolov3-tiny", confidence=0.5):
     """
     
     # Images are stored under the images/ directory
-    img_filepath = f'/src/app/files/yolov/inputs_yolov//{filename}'
+    img_filepath = f'/src/app/files/yolov/inputs_yolov/{filename}'
     
     # Read the image into a numpy array
     img = cv2.imread(img_filepath)
@@ -41,3 +41,6 @@ def detect_and_draw_box(filename, model="yolov3-tiny", confidence=0.5):
     # Display the image with bounding boxes
     display(Image(f'/src/app/files/yolov/outputs_yolov/Output_{filename}'))
 
+def video_detect_and_draw_box(filename):
+    # out = cv2.VideoWriter(f'/src/app/files/yolov/outputs_yolov/Output_{filename}', -1, 20.0, (640,480))
+    cv2.VideoWriter('filename.avi')

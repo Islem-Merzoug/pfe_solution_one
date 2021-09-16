@@ -4,7 +4,6 @@ from fastapi.responses import FileResponse
 from fastapi.responses import StreamingResponse
 from starlette.testclient import TestClient
 
-
 import os
 
 import shutil
@@ -27,10 +26,6 @@ app.add_middleware(
 )
 
 # ------------------------------------------ skinseg --------------------------------------------
-
-
-# app.fileInputName = ""
-
 
 @app.post("/batata")
 async def batata():
@@ -86,35 +81,66 @@ class Model(str, Enum):
 @app.post("/api/predict_yolov") 
 # def predict_yolov(model: Model, file: UploadFile = File(...)):
 def predict_yolov(file: UploadFile = File(...)):
-    import app.yolov3
 
     # 0. VALIDATE INPUT FILE
     filename = file.filename
-    fileExtension = filename.split(".")[-1] in ("jpg", "jpeg", "png")
+    fileExtension = filename.split(".")[-1] in ("jpg", "jpeg", "png", "mp4")
     if not fileExtension:
         raise HTTPException(status_code=415, detail="Unsupported file provided.")
 
     # 1. Upload images:
     file_location = f"/src/app/files/yolov/inputs_yolov/{filename}" 
-    app.fileInputName = file.filename
-
-
     with open(file_location, "wb") as buffer:
         shutil.copyfileobj(file.file, buffer)  
     
-    app.yolov3.detect_and_draw_box(filename)
+    # import app.yolov3
+    # app.yolov3.detect_and_draw_box(filename)
+
+    import app.detect
+    opt = {'weights': 'yolov5s.pt', 'source': '', 'imgsz': [640, 640], 'conf_thres': 0.25, 'iou_thres': 0.45, 'max_det': 1000, 'device': '', 'view_img': False, 'save_txt': False, 'save_conf': False, 'save_crop': False, 'nosave': False, 'classes': None, 'agnostic_nms': False, 'augment': False, 'visualize': False, 'update': False, 'project': '/src/app/runs/detect', 'name': 'exp', 'exist_ok': False, 'line_thickness': 3, 'hide_labels': False, 'hide_conf': False, 'half': False}
+    app.detect.main(opt, "/src/app/files/yolov/inputs_yolov/" + filename , "/src/app/files/yolov/outputs_yolov/")
     return {file.filename}
 
 
 @app.get("/api/export_yolov/{file_name}", responses={200: {"description": "A picture of a cat.", "content" : {"image/jpeg" : {"example" : "No example available. Just imagine a picture of a cat."}}}})
 def export_skinseg(file_name):
-    print(file_name)
-    output_jpeg_file_name = "Output_" + file_name + ".jpg"
+    output_jpeg_file_name = file_name + ".mp4"
     path = "/src/app/files/yolov/outputs_yolov/"
     file_path = os.path.join(path, output_jpeg_file_name)
     if os.path.exists(file_path):
+        print(file_name)
         return FileResponse(file_path, media_type="image/jpeg", filename=output_jpeg_file_name)
     return {"error" : "File not found!"}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

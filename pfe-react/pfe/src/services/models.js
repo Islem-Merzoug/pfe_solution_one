@@ -22,6 +22,18 @@ export const models = [
         executeLink: 'http://34.141.52.228:8000/api/predict_yolov',
         exportLink: 'http://34.141.52.228:8000/api/export_yolov'
         
+    },
+    {
+        id: 2,
+        name: 'Video Object Detection',
+        image: "/images/nfcread-yuz-tanima-face-matching.jpeg",
+        description: "En vision par ordinateur on désigne par détection d'objet une méthode permettant de détecter la présence d'une instance ou d'une classe d'objets dans une image numérique. Une attention particulière est portée à la détection de visage et la détection de personne.",
+        detailLink: '/modelDetails/2',
+        inputImageExempleLink: '/images/ex_yolo_output.jpeg',
+        outputImageExempleLink: '/images/ex_yolo_output.jpeg',
+        executeLink: 'http://34.141.52.228:8000/api/predict_yolov',
+        exportLink: 'http://34.141.52.228:8000/api/export_yolov'
+        
     }
 ]
 
