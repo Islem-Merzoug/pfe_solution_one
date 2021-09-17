@@ -32,29 +32,39 @@ function StepOne(){
 
 					<div style={{ margin : '20px' }}>
 
-						<img 
-							style={{   marginLeft: 'auto',
-										marginRight: 'auto',
-										display: 'block',
-										borderStyle: 'solid', 
-										borderColor: 'black' }}  
+						{extentionName != 'mp4' ? (
+							<img 
+								style={{   marginLeft: 'auto',
+											marginRight: 'auto',
+											display: 'block',
+											borderStyle: 'solid', 
+											borderColor: 'black' }}  
 										
 							src={finalExportLink} alt='Output' />
 
+						) : (
+							<video 
+								style={{   marginLeft: 'auto',
+												marginRight: 'auto',
+												display: 'block',
+												borderStyle: 'solid', 
+												borderColor: 'black' }}  
+								width="750" height="500" controls >
+								<source src={finalExportLink} type="video/mp4"/>
+							</video> 
 
+						)}
+						
 						<div style={{ textAlign : 'center', padding : '20px'  }} >
 							<a style={{ borderStyle: 'solid', borderColor: 'black', padding : '10px' }} href={finalExportLink} download>Download</a>
 						</div>
 					
 					</div>
 
-					
-					<video width="750" height="500" controls >
-						{/* <source src="/yt1s.com - TEST VIDEO.mp4" type="video/mp4"/> */}
-						<source src="/bird (2).mp4" type="video/mp4"/>
-						{/* <source src="/bird (2)1.mp4" type="video/mp4"/> */}
 
-					</video>
+
+
+
 
 			</div>
 		);
