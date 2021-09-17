@@ -23,22 +23,22 @@ function Model(){
 	const [selectedFile, setSelectedFile] = useState();
 	const [isFilePicked, setIsFilePicked] = useState(false);
 	const [isExecuted, setIsExecuted] = useState(false);
+	const [faceGenderDetectType, setFaceGenderDetectType] = useState();
 
 	const history = useHistory();
-
+	let { id } = useParams();
+	// console.log(id);
 	const changeHandler = (event) => {
 		setSelectedFile(event.target.files[0]);
-		setIsFilePicked(true);
+		setIsFilePicked(true);		
 	};
 
 	const handleConversion = (id) => {
 		setIsExecuted(true)
-
 		const formData = new FormData();
-
 		const selectedFileName = selectedFile.name.split('.').slice(0, -1).join('.');
-
 		const selectedFileExtention = selectedFile.name.split('.').pop();
+
 		console.log({
 			method  : 'post',
 			url : models[id].executeLink,
@@ -46,16 +46,24 @@ function Model(){
 		});
 
 		formData.append('file', selectedFile);
+		formData.append('choice', faceGenderDetectType);
 		
+		let axiosConfig = {
+			headers: {
+				'Content-Type': 'application/json;charset=UTF-8',
+				"DetectType": faceGenderDetectType
+			}
+		  };
+		console.log('Header axiosConfig:',axiosConfig);
 		axios({
 			method  : 'post',
 			url : models[id].executeLink,
-			data : formData,
+			data : formData
 		})
 		.then((res)=>{
 			console.log(res);
 			setIsExecuted(false)
-			history.push("/stepOne/" + id + "/" + selectedFileName);
+			history.push("/stepOne/" + id + "/" + selectedFileName + "/" + selectedFileExtention);
 
 		})
 		.catch((err) => {
@@ -68,7 +76,13 @@ function Model(){
 		console.log("Captcha value:", value);
 		setButtonPopup(false)
 		setButtonPopuptwo(true)
-	  }
+	}
+
+	function onChangeDetectTypeValue(event) {
+		console.log("Detect Type Value:",event.target.value);
+		setFaceGenderDetectType(event.target.value)
+	}	  
+
 
 	function ModelPost() {
 		let { id } = useParams();
@@ -145,6 +159,16 @@ function Model(){
 
 						) : (
 							<p>Select a file to show details</p>
+						)}
+
+						{id == 2 ? (
+							<div onChange={onChangeDetectTypeValue} >
+								<input type="radio" value="detect_face" name="detection" /> Face
+								<input type="radio" value="detect_gender" name="detection" /> Gender
+							</div>
+
+						) : (
+							<p>blablablabla</p>
 						)}
 
 					</div>

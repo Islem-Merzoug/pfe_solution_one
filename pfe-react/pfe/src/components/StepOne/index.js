@@ -17,7 +17,8 @@ function StepOne(){
 	function BlogPost() {
 		let { id } = useParams();
 		let { fileName } = useParams();
-		let finalExportLink = models[id].exportLink + "/" + fileName
+		let { extentionName } = useParams();
+		let finalExportLink = models[id].exportLink + "/" + fileName + "/" + extentionName
 		return (
 
 			<div style={{ margin : '10px 50px'}}>
@@ -47,6 +48,14 @@ function StepOne(){
 					
 					</div>
 
+					
+					<video width="750" height="500" controls >
+						{/* <source src="/yt1s.com - TEST VIDEO.mp4" type="video/mp4"/> */}
+						<source src="/bird (2).mp4" type="video/mp4"/>
+						{/* <source src="/bird (2)1.mp4" type="video/mp4"/> */}
+
+					</video>
+
 			</div>
 		);
 	  }
@@ -57,7 +66,7 @@ function StepOne(){
 
 		<Router>
 			<Switch>
-				<Route path="/stepOne/:id/:fileName">
+				<Route path="/stepOne/:id/:fileName/:extentionName">
 					<BlogPost />
 				</Route>
 			</Switch>

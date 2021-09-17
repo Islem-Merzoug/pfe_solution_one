@@ -45,7 +45,7 @@ def load_data(data_path):
 
 
 # path to model
-new_model = tf.keras.models.load_model('/home/pfe/projet/pfe-docker/pfe/Weights/model_for_medic.h5')
+new_model = tf.keras.models.load_model('/home/pfe/pfe_solution_one/pfe-docker/pfe/app/Weights/model_for_medic.h5')
 
 
 # Save Predictions

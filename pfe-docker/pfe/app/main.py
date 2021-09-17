@@ -1,4 +1,5 @@
-from fastapi import FastAPI, File, UploadFile, HTTPException
+from fastapi import FastAPI, File, UploadFile, HTTPException, Form
+
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import FileResponse
 from fastapi.responses import StreamingResponse
@@ -84,7 +85,7 @@ def predict_yolov(file: UploadFile = File(...)):
 
     # 0. VALIDATE INPUT FILE
     filename = file.filename
-    fileExtension = filename.split(".")[-1] in ("jpg", "jpeg", "png", "mp4")
+    fileExtension = filename.split(".")[-1] in ("jpg", "jpeg", "png", "mp4", "avi", "h264")
     if not fileExtension:
         raise HTTPException(status_code=415, detail="Unsupported file provided.")
 
@@ -102,9 +103,9 @@ def predict_yolov(file: UploadFile = File(...)):
     return {file.filename}
 
 
-@app.get("/api/export_yolov/{file_name}", responses={200: {"description": "A picture of a cat.", "content" : {"image/jpeg" : {"example" : "No example available. Just imagine a picture of a cat."}}}})
-def export_skinseg(file_name):
-    output_jpeg_file_name = file_name + ".mp4"
+@app.get("/api/export_yolov/{file_name}/{extention_name}", responses={200: {"description": "A picture of a cat.", "content" : {"image/jpeg" : {"example" : "No example available. Just imagine a picture of a cat."}}}})
+def export_skinseg(file_name, extention_name):
+    output_jpeg_file_name = file_name + "." + extention_name
     path = "/src/app/files/yolov/outputs_yolov/"
     file_path = os.path.join(path, output_jpeg_file_name)
     if os.path.exists(file_path):
@@ -113,6 +114,45 @@ def export_skinseg(file_name):
     return {"error" : "File not found!"}
 
 
+
+
+
+
+# ------------------------------------------ cvlib --------------------------------------------
+
+@app.post("/api/predict_cvlib") 
+async def predict_cvlib(choice: str = Form(...), file: UploadFile = File(...)):
+    print(choice)
+    print(file.filename)
+
+    # 0. VALIDATE INPUT FILE
+    filename = file.filename
+    fileExtension = filename.split(".")[-1] in ("jpg", "jpeg", "png")
+    print(fileExtension)
+    if not fileExtension:
+        raise HTTPException(status_code=415, detail="Unsupported file provided.")
+
+    # 1. Upload images:
+    file_location = f"/src/app/files/cvlib/inputs_cvlib/{filename}" 
+    with open(file_location, "wb") as buffer:
+        shutil.copyfileobj(file.file, buffer)  
+    
+    import app.cvlib
+    output_dir = "/src/app/files/cvlib/outputs_cvlib"
+    app.cvlib.detection(choice, filename, file_location, output_dir)
+
+    return {file.filename}
+
+
+@app.get("/api/export_cvlib/{file_name}/{extention_name}", responses={200: {"description": "A picture of a cat.", "content" : {"image/jpeg" : {"example" : "No example available. Just imagine a picture of a cat."}}}})
+def export_cvlib(file_name, extention_name):
+    output_jpeg_file_name = file_name + "." + extention_name
+    path = "/src/app/files/cvlib/outputs_cvlib/"
+    file_path = os.path.join(path, output_jpeg_file_name)
+    if os.path.exists(file_path):
+        print(file_name)
+        return FileResponse(file_path, media_type="image/jpeg", filename=output_jpeg_file_name)
+    return {"error" : "File not found!"}
 
 
 
