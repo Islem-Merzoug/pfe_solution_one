@@ -1,18 +1,12 @@
 import React from 'react';
+import Contact from '../components/Contact';
 
-const Contact = () => {
+const Contactt = () => {
   return (
-    <div
-      style={{
-        display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'center',
-        height: '90vh'
-      }}
-    >
-      <h1>Contact Us</h1>
+    <div>
+     <Contact/>
     </div>
   );
 };
 
-export default Contact;
+export default Contactt;

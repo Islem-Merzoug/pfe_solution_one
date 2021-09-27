@@ -18,8 +18,8 @@ const Navbar = () => {
         </NavLink>
         <Bars />
         <NavMenu>
-          <NavLink to='/modelDetails' activeStyle>
-           Model Details
+          <NavLink to='/' activeStyle>
+           Products
           </NavLink>
           <NavLink to='/about' activeStyle>
             About

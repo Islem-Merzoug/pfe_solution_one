@@ -3,40 +3,42 @@ import styled from "styled-components";
 
 export const CardWrapper = styled.div`
   overflow: hidden;
-  padding: 0 0 2rem;
-  margin: 1rem auto 0;
-  width: 18.75rem;
-  box-shadow: 0 0 1.2rem rgba(0, 0, 0, 0.05), 0 0rem 2.5rem rgba(0, 0, 0, 0.08);
-  border-radius: 2em;
-  border: 0.4rem solid red;
+  padding: 0 0 32px;
+  margin: 60px auto 0;
+  width: 300px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.05), 0 0px 40px rgba(0, 0, 0, 0.08);
+  border-radius: 50px 50px 50px 50px;
+  border: 5px solid red;
   border-color: #000;
 `;
 
 export const CardImage = styled.img`
+  padding-top: 2px;
+  padding-bottom: 2px;
   width: 100%;
-  hight: 5rem;
+  max-hight: 100px;
 `;
 
 export const CardHeader = styled.header`
-  padding-top: 0.8rem;
-  padding-bottom: 0.8rem;
+  padding-top: 10px;
+  padding-bottom: 10px;
 `;
 
 export const CardHeading = styled.h1`
-  font-size: 1.5rem;
+  font-size: 24px;
   font-weight: bold;
   text-align: center;
 `;
 
 export const CardBody = styled.div`
-  padding-right: 2rem;
-  padding-left: 2rem;
+  padding-right: 32px;
+  padding-left: 32px;
 `;
 
 export const CardDescription = styled.div`
-  padding-bottom: 0.7rem;
+  padding-bottom: 10px;
 
-  font-size: 1rem;
+  font-size: 15px;
   color: gray;
   text-align: left;
 `;
@@ -71,18 +73,18 @@ export const CardButton = styled.button`
   width: 100%;
   padding: 12px 0;
   font-family: inherit;
-  font-size: 0.9rem;
+  font-size: 14px;
   font-weight: 700;
   color: #fff;
   background-color: #256ce1;
   border: 0;
-  border-radius: 2rem;
-  box-shadow: 0 0.9rem 0.9rem rgba(0, 0, 0, 0.08);
+  border-radius: 35px;
+  box-shadow: 0 10px 10px rgba(0, 0, 0, 0.08);
   cursor: pointer;
   transition: all 0.25s cubic-bezier(0.02, 0.01, 0.47, 1);
 
   &:hover {
-    box-shadow: 0 1rem 1rem rgba(0, 0, 0, 0.16);
+    box-shadow: 0 15px 15px rgba(0, 0, 0, 0.16);
     transform: translate(0, -5px);
   }
 `;

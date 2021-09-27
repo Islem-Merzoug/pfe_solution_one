@@ -12,7 +12,7 @@ import paramiko
 from enum import Enum
 
 
-app = FastAPI(title='Deploying a ML Model with FastAPI')
+app = FastAPI(title='Deploying a ML Models with FastAPI')
 
 origins = [
     "*"
@@ -26,17 +26,17 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-# ------------------------------------------ skinseg --------------------------------------------
-
 @app.post("/batata")
 async def batata():
     return {"batata"}
+
+# ------------------------------------------ skinseg --------------------------------------------
 
 @app.post("/api/predict_skinseg")
 async def predict_skinseg(file: UploadFile = File(...)):
     import app.skinseg
     # 0. VALIDATE INPUT FILE
-    fileExtension = file.filename.split(".")[-1] in ("nii", "gz", "jpeg", "jpg", "png")
+    fileExtension = file.filename.split(".")[-1] in ("nii", "gz")
     if not fileExtension:
         raise HTTPException(status_code=415, detail="Unsupported file provided.")
 
@@ -54,15 +54,13 @@ async def predict_skinseg(file: UploadFile = File(...)):
     return {file.filename}
 
 
-@app.get("/api/export_skinseg/{file_name}", responses={200: {"description": "A picture of a cat.", "content" : {"image/jpeg" : {"example" : "No example available. Just imagine a picture of a cat."}}}})
+@app.get("/api/export_skinseg/{file_name}/{extention_name}", responses={200: {"description": "A picture of a cat.", "content" : {"image/jpeg" : {"example" : "No example available. Just imagine a picture of a cat."}}}})
 def export_skinseg(file_name):
-    print(file_name)
-    input_extention = ".nii.gz"
-    output_jpeg_file_name = "Output_" + file_name + ".jpeg"
-    output_nifti_file_name = "Output_" + file_name + ".nii.gz"
-    path = "/src/app/files/skinseg/outputs_skinseg/JPEG_outputs/"
+    output_jpeg_file_name = "Output_" + file_name + "." + "jpeg"
+    path = "/src/app/files/skinseg/outputs_skinseg/JPEG_outputs"
     file_path = os.path.join(path, output_jpeg_file_name)
     if os.path.exists(file_path):
+        print(file_name)
         return FileResponse(file_path, media_type="image/jpeg", filename=output_jpeg_file_name)
     return {"error" : "File not found!"}
 
@@ -77,15 +75,13 @@ class Model(str, Enum):
     yolov3 = "yolov3"
 
 
-# This endpoint handles all the logic necessary for the object detection to work.
-# It requires the desired model and the image in which to perform object detection.
 @app.post("/api/predict_yolov") 
 # def predict_yolov(model: Model, file: UploadFile = File(...)):
 def predict_yolov(file: UploadFile = File(...)):
 
     # 0. VALIDATE INPUT FILE
     filename = file.filename
-    fileExtension = filename.split(".")[-1] in ("jpg", "jpeg", "png", "mp4", "avi", "h264")
+    fileExtension = filename.split(".")[-1] in ('bmp', 'jpg', 'jpeg', 'png', 'tif', 'tiff', 'dng', 'webp', 'mpo', 'mov', 'avi', 'mp4', 'mpg', 'mpeg', 'm4v', 'wmv', 'mkv')
     if not fileExtension:
         raise HTTPException(status_code=415, detail="Unsupported file provided.")
 
@@ -117,7 +113,6 @@ def export_skinseg(file_name, extention_name):
 
 
 
-
 # ------------------------------------------ cvlib --------------------------------------------
 
 @app.post("/api/predict_cvlib") 
@@ -127,7 +122,7 @@ async def predict_cvlib(choice: str = Form(...), file: UploadFile = File(...)):
 
     # 0. VALIDATE INPUT FILE
     filename = file.filename
-    fileExtension = filename.split(".")[-1] in ("jpg", "jpeg", "png")
+    fileExtension = filename.split(".")[-1] in ("jpg", "jpeg", "png", "gif")
     print(fileExtension)
     if not fileExtension:
         raise HTTPException(status_code=415, detail="Unsupported file provided.")
@@ -140,6 +135,7 @@ async def predict_cvlib(choice: str = Form(...), file: UploadFile = File(...)):
     import app.cvlib
     output_dir = "/src/app/files/cvlib/outputs_cvlib"
     app.cvlib.detection(choice, filename, file_location, output_dir)
+    # app.cvlib.detection('video_to_frames', filename, file_location, output_dir)
 
     return {file.filename}
 

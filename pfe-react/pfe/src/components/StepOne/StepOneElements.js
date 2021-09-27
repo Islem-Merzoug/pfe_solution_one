@@ -1,36 +1,37 @@
 import styled from 'styled-components';
 
 export const Btn = styled.nav`
-border-radius: 4px;
+border-radius: 0.3rem;
 background: #256ce1;
-padding: 10px 22px;
+padding: 0.6rem 1.5rem;
 color: #fff;
 outline: none;
 border: none;
 cursor: pointer;
-width: 20%;
+width: 40%;
+// hight: 100px;
 text-decoration: none;
 text-align: center;
 /* Second Nav */
-margin-right: 24px;
-float: right;
-
+margin-bottum: 24px;
+// float: right;
 `;
 
 
 export const BtnInput = styled.input`
 border-radius: 4px;
 background: #256ce1;
-padding: 10px 22px;
+padding: 0.6rem 1.5rem;
 color: #fff;
 outline: none;
 border: none;
 cursor: pointer;
-width: 20%;
+width: 50%;
 text-decoration: none;
 text-align: center;
 /* Second Nav */
-margin-right: 24px;
-float: left;
+/* margin-right: 24px; */
+
+float: center;
 
 `;

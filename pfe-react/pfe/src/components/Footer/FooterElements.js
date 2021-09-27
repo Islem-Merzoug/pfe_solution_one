@@ -49,7 +49,7 @@ font-size: 18px;
 text-decoration: none;
 
 &:hover {
-	color: green;
+	color: blue;
 	transition: 200ms ease-in;
 }
 `;

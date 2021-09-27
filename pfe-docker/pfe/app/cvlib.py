@@ -18,12 +18,12 @@ def detection(choice, filename, inputdir, outputdir):
 
             # draw rectangle over face
             cv2.rectangle(image, (startX,startY), (endX,endY), (0,255,0), 2)
+
+
     if (choice=='detect_gender'):
         face, conf = cv.detect_face(image)
-
         padding = 20
         
-
         for f in face:
 
             (startX,startY) = max(0, f[0]-padding), max(0, f[1]-padding)
@@ -47,8 +47,12 @@ def detection(choice, filename, inputdir, outputdir):
 
             Y = startY - 10 if startY - 10 > 10 else startY + 10
 
-            cv2.putText(image, label, (startX, Y),  cv2.FONT_HERSHEY_SIMPLEX,
-                        0.7, (0, 255, 0), 2)
+            cv2.putText(image, label, (startX, Y),  cv2.FONT_HERSHEY_SIMPLEX, 0.7, (0, 255, 0), 2)
+
+            
+    if (choice=='video_to_frames'):
+        cv.animate(frames, image)
+
 
     # save output
     cv2.imwrite(os.path.join(outputdir, filename), image)

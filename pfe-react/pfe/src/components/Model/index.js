@@ -1,6 +1,7 @@
 import React, {useState} from 'react';
 import axios from "axios";
 import Loading from '../Loading';
+import './Model.css';
 
 import {
 	BrowserRouter as Router,
@@ -48,13 +49,6 @@ function Model(){
 		formData.append('file', selectedFile);
 		formData.append('choice', faceGenderDetectType);
 		
-		let axiosConfig = {
-			headers: {
-				'Content-Type': 'application/json;charset=UTF-8',
-				"DetectType": faceGenderDetectType
-			}
-		  };
-		console.log('Header axiosConfig:',axiosConfig);
 		axios({
 			method  : 'post',
 			url : models[id].executeLink,
@@ -89,31 +83,30 @@ function Model(){
 
 		return (
 
-			<div  style={{ padding : '50px 50px'}} >
+			<div style={{ margin : '3rem 3rem'}} >
 				<div>
-					<h1 style={{ display: 'flex', justifyContent: 'center', marginTop: '30px' }} >{models[id].name}</h1>
+					<h1 style={{ display: 'flex', justifyContent: 'center', }} >{models[id].name}</h1>
 
-					<div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '7vh'}} >
+					<div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }} >
 						{models[id].description}
 					</div>
 				</div>
 
 				<div>
-					<div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center'}} >
+					<div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }} >
 
-						<div class="column" style={{ margin: '30px' }} >
-							<h1 style={{ display: 'flex', justifyContent: 'left', marginTop: '30px' }} >Input exemple:</h1>
+						<div className="column" style={{ margin: '1.5rem' }} >
+							<h1 style={{ display: 'flex', justifyContent: 'left' }} >Inpuuut exemple:</h1>
 
-							<img style={{ borderStyle: 'solid', borderColor: 'black' }} src={models[id].inputImageExempleLink} alt='Input exemple' width={400}/>
+							<img style={{ borderStyle: 'solid', borderColor: 'black' }} src={models[id].inputImageExempleLink} alt='Input exemple' width={"100%"}/>
 						</div>
 
-						<div class="column" style={{ margin: '30px' }} >
-							<h1 style={{ display: 'flex', justifyContent: 'left', marginTop: '30px' }} >Output exemple:</h1>
+						<div className="column" style={{ margin: '1.5rem' }} >
+							<h1 style={{ display: 'flex', justifyContent: 'left' }} >Output exemple:</h1>
 
-							<img style={{ borderStyle: 'solid', borderColor: 'black' }} src={models[id].outputImageExempleLink} alt='Output exemple' width={400}/>
+							<img style={{ borderStyle: 'solid', borderColor: 'black' }} src={models[id].outputImageExempleLink} alt='Output exemple' width={'100%'}/>
 						</div>
 					</div>
-					
 				</div>
 
 
@@ -133,16 +126,16 @@ function Model(){
 								<div>
 									<p>Filename: {selectedFile.name}</p>
 									<p>Filetype: {selectedFile.type}</p>
-									<p>Size in bytes: {selectedFile.size}</p>
-									<p>
+									<p>Size in bytes: {selectedFile.size} Bytes</p> 
+									{/* <p>
 										lastModifiedDate:{' '}
 										{selectedFile.lastModifiedDate.toLocaleDateString()}
-									</p>
+									</p> */}
 									<br/>
 									{isExecuted ? (
 										<Loading/>
 									) : (
-										<p>Start the conversion process</p>
+										<p>Click here to start the conversion process</p>
 									)}
 
 								</div>
@@ -152,7 +145,8 @@ function Model(){
 										handleConversion(id)
 
 									} 
-										}>Convert</Btn>
+										}>Convert
+									</Btn>
 								</div>
 							</div>
 
@@ -168,17 +162,14 @@ function Model(){
 							</div>
 
 						) : (
-							<p>blablablabla</p>
+							<p> </p>
 						)}
 
 					</div>
 
 				</Popup> 
 
-				<Btn type="file" name="file" type="button" onClick={() => setButtonPopup(true) } > Try your own image</Btn>
-
-
-			
+				<Btn disabled={ buttonPopup || buttonPopuptwo } name="file" type="button" onClick={() => setButtonPopup(true) } > Try your own image</Btn>
 			
 			</div>
 		)
