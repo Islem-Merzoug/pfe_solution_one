@@ -49,8 +49,12 @@ new_model = tf.keras.models.load_model('/src/app/Weights/model_for_medic.h5')
 
 
 # Save Predictions
-def predict_data(data_path, data_path_without_extention):
-  data = sorted(glob.glob(data_path))
+# def predict_data(data_path, data_path_without_extention):
+def predict_data(fileName, inputDir, outputDir, fileNameWithoutExtension):
+  # print(fileName, inputDir, outputDir, fileNameWithoutExtension)
+  # print('/src/app/files/skinseg/outputs_skinseg/Nifti_outputs/Output_'+ data_path_without_extention +'.nii.gz' )
+  # print(outputDir + fileNameWithoutExtension +'.nii.gz' )
+  data = sorted(glob.glob(inputDir + fileName ))
   total=len(data)
 
   for count, file in enumerate(data,1):
@@ -66,12 +70,13 @@ def predict_data(data_path, data_path_without_extention):
       a=i
       i = i[:,:] * 51
       nft_img = nib.Nifti1Image(a, image.affine)
-      nib.save(nft_img, os.path.join('/src/app/files/skinseg/outputs_skinseg/Nifti_outputs/Output_'+ data_path_without_extention +'.nii.gz' ))
-      cv2.imwrite('/src/app/files/skinseg/outputs_skinseg/JPEG_outputs/Output_'+ data_path_without_extention +'.jpeg', i)
+      # nib.save(nft_img, os.path.join('/src/app/files/skinseg/outputs_skinseg/Nifti_outputs/Output_'+ data_path_without_extention +'.nii.gz' ))
+      # cv2.imwrite('/src/app/files/skinseg/outputs_skinseg/JPEG_outputs/Output_'+ data_path_without_extention +'.jpeg', i)
+
+      nib.save(nft_img, os.path.join(outputDir + fileNameWithoutExtension +'.nii.gz' ))
+      cv2.imwrite(outputDir + fileNameWithoutExtension +'.jpeg', i)
       print("{} / {}".format(count,total))
       return np.array(imags)
-
-# predict_data(DATA_PATH)
 
 
 def run():

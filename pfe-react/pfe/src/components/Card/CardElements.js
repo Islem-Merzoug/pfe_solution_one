@@ -5,7 +5,7 @@ export const CardWrapper = styled.div`
   overflow: hidden;
   padding: 0 0 2rem;
   margin: 1rem auto 0;
-  width: 18.75rem;
+  width: 15rem;
   box-shadow: 0 0 1.2rem rgba(0, 0, 0, 0.05), 0 0rem 2.5rem rgba(0, 0, 0, 0.08);
   border-radius: 2em;
   border: 0.4rem solid red;
@@ -14,7 +14,7 @@ export const CardWrapper = styled.div`
 
 export const CardImage = styled.img`
   width: 100%;
-  hight: 5rem;
+  // hight: 5rem;
 `;
 
 export const CardHeader = styled.header`
@@ -29,8 +29,8 @@ export const CardHeading = styled.h1`
 `;
 
 export const CardBody = styled.div`
-  padding-right: 2rem;
-  padding-left: 2rem;
+  padding-right: 1rem;
+  padding-left: 1rem;
 `;
 
 export const CardDescription = styled.div`

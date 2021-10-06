@@ -1,31 +1,85 @@
-import React from 'react'
+import React, { useState } from "react";
 import './Contact.css'
+
+
 const Contact = () => {
+    const [status, setStatus] = useState("Submit");
+
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        setStatus("Sending...");
+        const { email, message, subject } = e.target.elements;
+        let details = {
+            "email": {
+              "email": [
+                email.value
+              ]
+            },
+            "content": {
+              "message": message.value,
+              "subject": subject.value
+            }
+          }
+        console.log(details);
+
+        let response = await fetch("http://localhost:8000/email", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json;charset=utf-8",
+          },
+          body: JSON.stringify(details),
+        });
+        setStatus("Submit");
+        let result = await response.json();
+        alert(result.message);
+      };
+
+
+      // return (
+      //   <form onSubmit={handleSubmit}>
+      //     <div>
+      //       <label htmlFor="name">Name:</label>
+      //       <input type="text" id="name" required />
+      //     </div>
+      //     <div>
+      //       <label htmlFor="email">Email:</label>
+      //       <input type="email" id="email" required />
+      //     </div>
+      //     <div>
+      //       <label htmlFor="message">Message:</label>
+      //       <textarea id="message" required />
+      //     </div>
+      //     <button type="submit">{status}</button>
+      //   </form>
+      // );
+
+
+      // const onChangeContact = (event) => {
+      //   console.log("Detect Type Value:",event.target.value);
+      //   }
+
+        
     return (
         <div>
 
-            <h3>Contact Form</h3>
 
-            <div class="container">
-                <form>
-                    <label for="fname">First Name</label>
-                    <input type="text" id="fname" name="firstname" placeholder="Your name.."/>
+            <div className="container">
+            <h2>Contact Form</h2>
+            <br/>
 
-                    <label for="lname">Last Name</label>
-                    <input type="text" id="lname" name="lastname" placeholder="Your last name.."/>
+                <form onSubmit={handleSubmit} >
+                    <label htmlFor="email">Email</label>
+                    <input type="text" id="email" name="email" placeholder="Your email.."/>
 
-                    <label for="country">Country</label>
-                    <select id="country" name="country">
-                        <option value="australia">Australia</option>
-                        <option value="canada">Canada</option>
-                        <option value="usa">USA</option>
-                    </select>
+                    <label htmlFor="subject">subject</label>
+                    <input type="text" id="subject" name="subject" placeholder="Your subject.."/>
 
-                    <label for="subject">Subject</label>
-                    <textarea id="subject" name="subject" placeholder="Write something.." style="height:200px"></textarea>
+                    <label htmlFor="message">Message</label>
+                    <textarea id="message" name="message" placeholder="Write something.." style={{height: "200px"}}></textarea>
 
-                    <input type="submit" value="Submit"></input>
+                    <button type="submit">{status}</button>
                 </form>
+
             </div>
 
         </div>

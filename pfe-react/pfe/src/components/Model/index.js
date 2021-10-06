@@ -17,6 +17,7 @@ import { models } from "../../services/models";
 import {
 	Btn, BtnInput
 } from './ModelElements';
+import Products from '../Products';
 
 function Model(){
 	const [buttonPopup, setButtonPopup] = useState(false)
@@ -47,6 +48,7 @@ function Model(){
 		});
 
 		formData.append('file', selectedFile);
+		formData.append('userID', localStorage.getItem("userID"));
 		formData.append('choice', faceGenderDetectType);
 		
 		axios({
@@ -90,19 +92,25 @@ function Model(){
 					<div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }} >
 						{models[id].description}
 					</div>
+					<br/>
+
+					<h4 style={{ display: 'flex', justifyContent: 'center', }} >File Extentions</h4>
+					<div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }} >
+						{models[id].fileExtentions}
+					</div>
 				</div>
 
 				<div>
 					<div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }} >
 
 						<div className="column" style={{ margin: '1.5rem' }} >
-							<h1 style={{ display: 'flex', justifyContent: 'left' }} >Inpuuut exemple:</h1>
+							<h3 style={{ display: 'flex', justifyContent: 'left' }} >Input exemple:</h3>
 
 							<img style={{ borderStyle: 'solid', borderColor: 'black' }} src={models[id].inputImageExempleLink} alt='Input exemple' width={"100%"}/>
 						</div>
 
 						<div className="column" style={{ margin: '1.5rem' }} >
-							<h1 style={{ display: 'flex', justifyContent: 'left' }} >Output exemple:</h1>
+							<h3 style={{ display: 'flex', justifyContent: 'left' }} >Output exemple:</h3>
 
 							<img style={{ borderStyle: 'solid', borderColor: 'black' }} src={models[id].outputImageExempleLink} alt='Output exemple' width={'100%'}/>
 						</div>
@@ -135,7 +143,7 @@ function Model(){
 									{isExecuted ? (
 										<Loading/>
 									) : (
-										<p>Click here to start the conversion process</p>
+										<p>Click here to start the process</p>
 									)}
 
 								</div>
@@ -145,7 +153,7 @@ function Model(){
 										handleConversion(id)
 
 									} 
-										}>Convert
+										}>Process
 									</Btn>
 								</div>
 							</div>
@@ -171,6 +179,9 @@ function Model(){
 
 				<Btn disabled={ buttonPopup || buttonPopuptwo } name="file" type="button" onClick={() => setButtonPopup(true) } > Try your own image</Btn>
 			
+				<div style={{ padding: '3rem 0' }} >		
+					<Products currentProductId = { id } />
+				</div>
 			</div>
 		)
 	}

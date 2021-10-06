@@ -1,11 +1,15 @@
 import React from 'react';
+import Header from '../components/Header';
 import Products from '../components/Products';
 import { models } from '../services/models'; 
 
 const Home = () => {
   console.log(models[0] )
   return (
-    <div style={{ margin: '2%' }}  >
+    <>
+      <Header />
+
+        <div style={{ margin: '2%' }}  >
        <h1 style={{ display: 'flex', justifyContent: 'center', margin: '2em', fontSize:"1.5rem" }} >
        Endless possibilities with computer vision, natural language processing and automated machine learning.
        </h1>
@@ -20,11 +24,11 @@ const Home = () => {
         <h1 style={{ display: 'flex', justifyContent: 'center', margin: '30px' }} >Why choose us</h1>
 
         <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '10vh'}} >
-          <div class="column" style={{ margin: '15px' }}  >
+          <div className="column" style={{ margin: '15px' }}  >
               Awesome Design
               <div style={{ color: 'gray' }}  > marginLeftmarginLeftmarginLeftmarginLeftmarginLeftmarginLeftmarginLeftmarginLeft </div>
           </div>
-          <div class="column" style={{ margin: '15px' }} >
+          <div className="column" style={{ margin: '15px' }} >
               Notification Update
               <div style={{ color: 'gray' }}  > marginLeftmarginLeftmarginLeftmarginLeftmarginLeftmarginLeftmarginLeftmarginLeft </div>
           </div>
@@ -32,11 +36,11 @@ const Home = () => {
         
         <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '10vh'}} >
 
-          <div class="column" style={{ margin: '15px' }}  >
+          <div className="column" style={{ margin: '15px' }}  >
               Quality AI Models
               <div style={{ color: 'gray' }}  > marginLeftmarginLeftmarginLeftmarginLeftmarginLeftmarginLeftmarginLeftmarginLeft </div>
           </div>
-          <div class="column" style={{ margin: '15px' }} >
+          <div className="column" style={{ margin: '15px' }} >
               Free Bug support
               <div style={{ color: 'gray' }}  > marginLeftmarginLeftmarginLeftmarginLeftmarginLeftmarginLeftmarginLeftmarginLeft </div>
           </div>
@@ -51,9 +55,11 @@ const Home = () => {
         marginLeftmarginLeftmarginLeftmarginLeftmarginLeftmarginLeftmarginLeftmarginLeft marginLeftmarginLeftmarginLeftmarginLeftmarginLeftmarginLeftmarginLeftmarginLeft 
         </div>
       </div> */}
-
-
     </div>
+
+    </>
+
+
   );
 };
 

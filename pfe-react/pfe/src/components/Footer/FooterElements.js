@@ -1,8 +1,8 @@
 import styled from 'styled-components';
 
 export const Box = styled.div`
-padding: 80px 60px;
-background: #C5CEE5;
+padding: 10px;
+background: #000;
 bottom: 0;
 width: 100%;
 
@@ -43,20 +43,20 @@ grid-gap: 20px;
 `;
 
 export const FooterLink = styled.a`
-color: #000;
+color: #fff;
 margin-bottom: 20px;
 font-size: 18px;
 text-decoration: none;
 
 &:hover {
-	color: blue;
+	color: #C5CEE5;
 	transition: 200ms ease-in;
 }
 `;
 
 export const Heading = styled.p`
 font-size: 24px;
-color: #000;
+color: #fff;
 margin-bottom: 40px;
 font-weight: bold;
 `;

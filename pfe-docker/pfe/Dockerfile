@@ -44,7 +44,13 @@ ADD https://github.com/krallin/tini/releases/download/${TINI_VERSION}/tini /usr/
 RUN chmod +x /usr/bin/tini
 ENTRYPOINT ["/usr/bin/tini", "--"]
 
-COPY . /src
+RUN pip install motor==2.5.1
+RUN pip install PyJWT
+RUN pip install python-decouple
+RUN pip install python-jose[cryptography]
+RUN pip install passlib[bcrypt]
+
+COPY . /src 
 
 # CMD ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "8000"]
 # CMD ["jupyter", "notebook", "--port=8888", "--no-browser", "--ip=0.0.0.0", "--allow-root"]

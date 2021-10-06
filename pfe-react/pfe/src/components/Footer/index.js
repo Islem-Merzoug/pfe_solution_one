@@ -14,9 +14,9 @@ const Footer = () => {
     <Box>
       <div style={{ color: "#256ce1", 
                     textAlign: "center", 
-                    marginTop: "-50px", 
+                    margin: "1.5rem"
               }}> 
-        <img style={{ width: '80px' }} src={'/images/logo.svg'} alt='IMEDscripts' />         
+        <img style={{ width: '80px' }} src={'/images/unknown.png'} alt='IMEDscripts' />         
       </div>
       <Container>
         <Row>
@@ -73,6 +73,23 @@ const Footer = () => {
           </Column>
         </Row>
       </Container>
+
+      <h2 style={{ color: "#fff", textAlign: "center", margin: "0 1.5rem" }} >Nos Partenaires</h2>
+
+      <div style={{ color: "#256ce1", 
+                    textAlign: "center", 
+                    margin: "1.5rem"
+              }}> 
+        <img style={{ maxHeight: '80px', margin: "0 1.5rem" }} src={'/images/LogoUnivBejaia.png'} alt='IMEDscripts' />         
+        <img style={{ maxHeight: '80px', margin: "0 1.5rem" }} src={'/images/limed.png'} alt='IMEDscripts' />  
+        <img style={{ maxHeight: '80px', margin: "0 1.5rem" }} src={'/images/cerist.png'} alt='IMEDscripts' />
+        <img style={{ maxHeight: '80px', margin: "0 1.5rem" }} src={'/images/cropped-icon-epb.png'} alt='IMEDscripts' />         
+        <img style={{ maxHeight: '80px', margin: "0 1.5rem" }} src={'/images/LOGOGlob.png'} alt='IMEDscripts' />         
+
+       
+      </div>
+
+
     </Box>
   );
 };

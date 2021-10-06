@@ -76,7 +76,7 @@ div#wrapperHeader div#header {
 }
 
 div#wrapperHeader div#header img {
-    width: 116%; /* the width of the logo image */
+    width: 100%; /* the width of the logo image */
     height:100%; /* the height of the logo image */
     margin:0 auto;
 }

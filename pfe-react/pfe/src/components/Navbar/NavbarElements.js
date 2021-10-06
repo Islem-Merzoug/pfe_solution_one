@@ -8,9 +8,16 @@ export const Nav = styled.nav`
   display: flex;
   justify-content: space-between;
   padding: 0.5rem calc((100vw - 1000px) / 2);
-  z-index: 10;
+  // z-index: 10;
   /* Third Nav */
   /* justify-content: flex-start; */
+  // @media screen and (max-width: 768px) {
+  //   background: #000;
+  //   display: block;
+  //   height: auto;
+
+
+  // }
 `;
 
 export const NavLink = styled(Link)`
@@ -18,6 +25,7 @@ export const NavLink = styled(Link)`
   display: flex;
   align-items: center;
   text-decoration: none;
+  font-size: 1rem;
   padding: 0 1rem;
   height: 100%;
   cursor: pointer;
@@ -29,15 +37,15 @@ export const NavLink = styled(Link)`
 export const Bars = styled(FaBars)`
   display: none;
   color: #fff;
-  @media screen and (max-width: 768px) {
-    display: block;
-    position: absolute;
-    top: 0;
-    right: 0;
-    transform: translate(-100%, 75%);
-    font-size: 1.8rem;
-    cursor: pointer;
-  }
+  // @media screen and (max-width: 768px) {
+  //   display: block;
+  //   position: absolute;
+  //   top: 0;
+  //   right: 0;
+  //   transform: translate(-100%, 75%);
+  //   font-size: 1.8rem;
+  //   cursor: pointer;
+  // }
 `;
 
 export const NavMenu = styled.div`
@@ -49,9 +57,10 @@ export const NavMenu = styled.div`
   /* Third Nav */
   /* width: 100vw;
   white-space: nowrap; */
-  @media screen and (max-width: 768px) {
-    display: none;
-  }
+  // @media screen and (max-width: 768px) {
+  //   display: block;
+
+  // }
 `;
 
 export const NavBtn = styled.nav`
@@ -61,15 +70,15 @@ export const NavBtn = styled.nav`
   /* Third Nav */
   /* justify-content: flex-end;
   width: 100vw; */
-  @media screen and (max-width: 768px) {
-    display: none;
-  }
+  // @media screen and (max-width: 768px) {
+  //   display: none;
+  // }
 `;
 
 export const NavBtnLink = styled(Link)`
-  border-radius: 4px;
+  border-radius: 0.3rem;
   background: #256ce1;
-  padding: 10px 22px;
+  padding: 0.7rem 1.2rem;
   color: #fff;
   outline: none;
   border: none;
@@ -77,10 +86,15 @@ export const NavBtnLink = styled(Link)`
   transition: all 0.2s ease-in-out;
   text-decoration: none;
   /* Second Nav */
-  margin-left: 24px;
+  margin-left: 0.75rem;
   &:hover {
     transition: all 0.2s ease-in-out;
     background: #fff;
     color: #010606;
   }
 `;
+
+
+
+
+// -------------------
