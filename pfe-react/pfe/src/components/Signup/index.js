@@ -24,7 +24,7 @@ const SignUpComponent = () => {
 
         axios({
           method  : 'post',
-          url : "http://localhost:8000/user/signup",
+          url : "http://34.136.35.194:8000/user/signup",
           data : details
         })
         .then((res)=>{
@@ -46,9 +46,9 @@ const SignUpComponent = () => {
             localStorage.setItem("email", res.data['email']);
             localStorage.setItem("is_authenticated", true);
             localStorage.setItem("token_expired", false);
-            window.location.reload();
-
+            
             history.push("/dashboard");
+            window.location.reload();
           }
 
         })
@@ -78,7 +78,7 @@ const SignUpComponent = () => {
                     <input type="text" id="email" name="email" placeholder="Your email.."/>
 
                     <label htmlFor="password">Password</label>
-                    <input type="password" id="password" name="password" placeholder="Your subject.."/>
+                    <input type="password" id="password" name="password" placeholder="Your password.."/>
 
                     <button type="submit">{status}</button>
                 </form>

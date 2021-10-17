@@ -45,7 +45,7 @@ function StepOne(){
 											borderColor: 'black',
 											width: '50%'
 										}}  
-							src={finalExportLink} alt='Output' />
+							src={finalExportLink} alt="The prediction output could not be displayed for some reason (probably because its type is not supported by the browser), \n Please download it" />
 
 						) : (
 							<video 
@@ -57,7 +57,7 @@ function StepOne(){
 											width: '75%'
 										}}  
 											controls >
-								<source src={finalExportLink} type="video/mp4"/>
+								<source src={finalExportLink} type="video/mp4" alt="The prediction output could not be displayed for some reason (probably because its type is not supported by the browser), \n Please download it" />
 							</video> 
 
 						)}

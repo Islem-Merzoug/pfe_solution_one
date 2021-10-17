@@ -84,7 +84,7 @@ const Footer = () => {
         <img style={{ maxHeight: '80px', margin: "0 1.5rem" }} src={'/images/limed.png'} alt='IMEDscripts' />  
         <img style={{ maxHeight: '80px', margin: "0 1.5rem" }} src={'/images/cerist.png'} alt='IMEDscripts' />
         <img style={{ maxHeight: '80px', margin: "0 1.5rem" }} src={'/images/cropped-icon-epb.png'} alt='IMEDscripts' />         
-        <img style={{ maxHeight: '80px', margin: "0 1.5rem" }} src={'/images/LOGOGlob.png'} alt='IMEDscripts' />         
+        {/* <img style={{ maxHeight: '4rem', margin: "0 1.5rem" }} src={'/images/LOGOGlob.png'} alt='IMEDscripts' />          */}
 
        
       </div>

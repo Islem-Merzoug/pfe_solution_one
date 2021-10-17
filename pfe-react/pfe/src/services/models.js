@@ -7,8 +7,8 @@ export const models = [
         detailLink: '/modelDetails/0',
         inputImageExempleLink: '/images/skinSeg/skinseg-input.jpg',
         outputImageExempleLink: '/images/skinSeg/skinseg-output.jpeg',
-        executeLink: 'http://localhost:8000/api/predict_skinseg',
-        exportLink: 'http://localhost:8000/api/export_skinseg',
+        executeLink: 'http://34.136.35.194:8000/api/predict_skinseg',
+        exportLink: 'http://34.136.35.194:8000/api/export_skinseg',
         fileExtentions: '*.nii'
         
     },
@@ -20,8 +20,8 @@ export const models = [
         detailLink: '/modelDetails/1',
         inputImageExempleLink: '/images/object/object-input-2.jpg',
         outputImageExempleLink: '/images/object/object-output-2.jpg',
-        executeLink: 'http://localhost:8000/api/predict_yolo',
-        exportLink: 'http://localhost:8000/api/export_yolo',
+        executeLink: 'http://34.136.35.194:8000/api/predict_yolo',
+        exportLink: 'http://34.136.35.194:8000/api/export_yolo',
         fileExtentions: "*.bmp,  *.jpg,  *.jpeg,  *.png,  *.tif,  *.tiff,  *.dng,  *.webp,  *.mpo,  *.mov,  *.avi,   *.mp4,  *.mpg,  *.mpeg,  *.m4v,  *.wmv,  *.mkv"
 
     },
@@ -33,8 +33,8 @@ export const models = [
         detailLink: '/modelDetails/2',
         inputImageExempleLink: '/images/faceGender/face-gender-input.jpg',
         outputImageExempleLink: '/images/faceGender/face-gender-output.jpg',
-        executeLink: 'http://localhost:8000/api/predict_cvlib',
-        exportLink: 'http://localhost:8000/api/export_cvlib',
+        executeLink: 'http://34.136.35.194:8000/api/predict_cvlib',
+        exportLink: 'http://34.136.35.194:8000/api/export_cvlib',
         fileExtentions: "*.jpg,  *.jpeg,  *.png"
 
     }

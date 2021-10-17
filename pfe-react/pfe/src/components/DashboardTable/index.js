@@ -8,7 +8,7 @@ function DashboardTable() {
 	const getAllFiles = () => {
         axios({
             method: 'get',
-            url: 'http://localhost:8000/get_files/' + localStorage.getItem("userID")
+            url: 'http://34.136.35.194:8000/get_files/' + localStorage.getItem("userID")
         })
         .then((res)=>{
 			// console.log(res['data']['data'][0]);

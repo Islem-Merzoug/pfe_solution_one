@@ -22,7 +22,7 @@ const SignInComponent = () => {
 
         axios({
           method  : 'post',
-          url : "http://localhost:8000/user/signin",
+          url : "http://34.136.35.194:8000/user/signin",
           data : details
         })
         .then((res)=>{
@@ -38,16 +38,17 @@ const SignInComponent = () => {
               setStatus("Submit");
               console.log(res);
               alert("Welcome " + res.data['fullname'])
-            
+
             localStorage.setItem("userID", res.data['user_id']);
             localStorage.setItem("access_token", res.data['access_token']);
             localStorage.setItem("fullname", res.data['fullname']);
             localStorage.setItem("email", res.data['email']);
             localStorage.setItem("is_authenticated", true);
             localStorage.setItem("token_expired", false);
-            window.location.reload();
 
             history.push("/dashboard");
+            window.location.reload();
+
           }
 
 
@@ -91,7 +92,7 @@ const SignInComponent = () => {
                     <input type="text" id="email" name="email" placeholder="Your email.."/>
 
                     <label htmlFor="password">Password</label>
-                    <input type="password" id="password" name="password" placeholder="Your subject.."/>
+                    <input type="password" id="password" name="password" placeholder="Your password.."/>
 
                     <button type="submit">{status}</button>
                 </form>

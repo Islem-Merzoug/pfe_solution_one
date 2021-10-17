@@ -2,7 +2,7 @@ from logging import FATAL
 import motor.motor_asyncio
 from bson.objectid import ObjectId
 
-MONGO_DETAILS = "mongodb://192.168.1.105:27018"
+MONGO_DETAILS = "mongodb://34.136.35.194:27017"
 
 client = motor.motor_asyncio.AsyncIOMotorClient(MONGO_DETAILS)
 
@@ -12,7 +12,6 @@ user_collection = database.get_collection("users_collection")
 file_collection = database.get_collection("files_collection")
 
 # helpers
-
 
 def file_helper(file) -> dict:
     return {

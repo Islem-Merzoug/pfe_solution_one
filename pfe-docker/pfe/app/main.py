@@ -50,13 +50,19 @@ class EmailContent(BaseModel):
     subject: str
 
 
+@app.post("/batata")
+async def batata():
+    return "batata"
 
 @app.post("/email")
 async def simple_send(
     email: EmailSchema, content:EmailContent
     ) -> JSONResponse:
 
-    print(email.email[0])
+    print("email.email[0]: ", email.email[0])
+    print('email.dict().get("email")', email.dict().get("email"))
+    print("os.environ.get('EMAIL'): ", os.environ.get('EMAIL'))
+
     conf = ConnectionConfig(
         MAIL_USERNAME = os.environ.get('EMAIL'),
         MAIL_PASSWORD = os.environ.get('PASS'),
@@ -69,11 +75,14 @@ async def simple_send(
         VALIDATE_CERTS = True
     )
     
-    html = f""" {content.message} """
+    html = f""" {content.message} 
+    
+    \n \n
+    Sent by: {email.email[0]} """
 
     message = MessageSchema(
         subject=content.subject,
-        recipients=email.dict().get("email"),  # List of recipients, as many as you can pass 
+        recipients= [os.environ.get('EMAIL')],  # List of recipients, as many as you can pass 
         body=html,
         subtype="text"
         )
@@ -222,7 +231,7 @@ async def predict_skinseg(userID: str = Form(...), choice: str = Form(...), file
         "service": "Skin Segmentation",
         "choice": choice,
         "inputLink": inputDir + fileName,
-        "outputLink": "http://localhost:8000/api/export_skinseg/"+ fileNameWithoutExtension + "/"+ fileExtension,
+        "outputLink": "http://34.136.35.194:8000/api/export_skinseg/"+ fileNameWithoutExtension + "/"+ fileExtension,
         "user_id": userID
     }
     file = jsonable_encoder(fileData)
@@ -302,7 +311,7 @@ async def predict_yolo(userID: str = Form(...), choice: str = Form(...), file: U
         "service": "Object Detection",
         "choice": choice,
         "inputLink": inputDir + fileName,
-        "outputLink": "http://localhost:8000/api/predict_yolo/"+ fileNameWithoutExtension + "/"+ fileExtension,        
+        "outputLink": "http://34.136.35.194:8000/api/export_yolo/"+ fileNameWithoutExtension + "/"+ fileExtension,        
         "user_id": userID
     }
     file = jsonable_encoder(fileData)
@@ -357,7 +366,7 @@ async def predict_cvlib(userID: str = Form(...), choice: str = Form(...), file: 
         "service": "Face/Gender Detection",
         "choice": choice,
         "inputLink": inputDir + fileName,
-        "outputLink": "http://localhost:8000/api/predict_cvlib/"+ fileNameWithoutExtension + "/"+ fileExtension,
+        "outputLink": "http://34.136.35.194:8000/api/export_cvlib/"+ fileNameWithoutExtension + "/"+ fileExtension,
         "user_id": userID
     }
     file = jsonable_encoder(fileData)

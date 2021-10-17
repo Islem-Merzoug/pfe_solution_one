@@ -22,7 +22,7 @@ const Contact = () => {
           }
         console.log(details);
 
-        let response = await fetch("http://localhost:8000/email", {
+        let response = await fetch("http://34.136.35.194:8000/email", {
           method: "POST",
           headers: {
             "Content-Type": "application/json;charset=utf-8",

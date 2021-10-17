@@ -39,7 +39,11 @@ const App = () => {
 
   }
   
+  let is_authenticated = true
+  let token_expired = true
 
+  is_authenticated = (localStorage.getItem("is_authenticated") == "true") ? (is_authenticated = true) : (is_authenticated = false)
+  token_expired = (localStorage.getItem("token_expired") == "false") ? (token_expired = false) : (token_expired = true)
 
   return (
 
@@ -53,9 +57,12 @@ const App = () => {
           <Route path='/about' component={About} />
           <Route path='/services' component={Services} />
           <Route path='/contact-us' component={Contact} />
-          <Route path='/dashboard' component={Dashboard} />
+          {/* <Route path='/dashboard' component={Dashboard} /> */}
           <Route path='/sign-in' component={SignIn} />
           <Route path='/sign-up' component={SignUp} />
+
+          { is_authenticated && !token_expired  ? <Route path='/dashboard' component={Dashboard} /> : <Route path='/' component={Home} /> }
+
         </Switch>
         <Footer />
 

@@ -199,7 +199,7 @@ function NavBar() {
                   </NavLink>
 
                   ) : (
-                  <p> haha </p>
+                  <p>  </p>
                 )}
             </li>
 

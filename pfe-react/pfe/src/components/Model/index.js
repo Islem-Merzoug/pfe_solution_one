@@ -58,13 +58,17 @@ function Model(){
 		})
 		.then((res)=>{
 			console.log(res);
+			console.log('res');
 			setIsExecuted(false)
 			history.push("/stepOne/" + id + "/" + selectedFileName + "/" + selectedFileExtention);
 
 		})
 		.catch((err) => {
+			setIsExecuted(false)
 			console.log("err");
+			alert(err)
 			throw err
+			
 		});
 	}
 	
@@ -165,7 +169,7 @@ function Model(){
 
 						{id == 2 ? (
 							<div onChange={onChangeDetectTypeValue} >
-								<input type="radio" value="detect_face" name="detection" /> Face
+								<input type="radio" value="detect_face" name="detection" checked /> Face
 								<input type="radio" value="detect_gender" name="detection" /> Gender
 							</div>
 
