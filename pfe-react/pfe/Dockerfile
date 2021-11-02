@@ -7,7 +7,6 @@ RUN npm run build
 
 FROM nginx
 COPY --from=build /app/build /var/www
-# COPY --from=build /app/build /user/share/nginx/html
 RUN rm /etc/nginx/conf.d/default.conf
 COPY nginx/nginx.conf /etc/nginx/nginx.conf
 EXPOSE 80
